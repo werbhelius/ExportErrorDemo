@@ -47,6 +47,7 @@
 		42CBAB5729DE8CA500098DB4 = {
 			isa = PBXGroup;
 			children = (
+				42A67C2A29E65CA000CA87B9 /* README.md */,
 				42CBAB6229DE8CA500098DB4 /* ExportErrorDemo */,
 				42CBAB6129DE8CA500098DB4 /* Products */,
 			);
@@ -73,7 +74,6 @@
 				42CBAB7729DE8D4F00098DB4 /* CoreDataSyncMonitor.swift */,
 				42CBAB7929DE8E8900098DB4 /* CoreDataStack.swift */,
 				42CBAB7C29DE98E700098DB4 /* EnvironmentKey.swift */,
-				42A67C2A29E65CA000CA87B9 /* README.md */,
 			);
 			path = ExportErrorDemo;
 			sourceTree = "<group>";

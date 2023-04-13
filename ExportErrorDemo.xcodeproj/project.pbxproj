@@ -7,23 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42A67C2B29E65CA000CA87B9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42A67C2A29E65CA000CA87B9 /* README.md */; };
 		42CBAB6429DE8CA500098DB4 /* ExportErrorDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB6329DE8CA500098DB4 /* ExportErrorDemoApp.swift */; };
 		42CBAB6629DE8CA500098DB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB6529DE8CA500098DB4 /* ContentView.swift */; };
 		42CBAB6829DE8CA600098DB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42CBAB6729DE8CA600098DB4 /* Assets.xcassets */; };
 		42CBAB6B29DE8CA600098DB4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42CBAB6A29DE8CA600098DB4 /* Preview Assets.xcassets */; };
-		42CBAB6D29DE8CA600098DB4 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB6C29DE8CA600098DB4 /* Persistence.swift */; };
 		42CBAB7029DE8CA600098DB4 /* ExportErrorDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB6E29DE8CA600098DB4 /* ExportErrorDemo.xcdatamodeld */; };
+		42CBAB7829DE8D4F00098DB4 /* CoreDataSyncMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB7729DE8D4F00098DB4 /* CoreDataSyncMonitor.swift */; };
+		42CBAB7A29DE8E8900098DB4 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB7929DE8E8900098DB4 /* CoreDataStack.swift */; };
+		42CBAB7D29DE98E700098DB4 /* EnvironmentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CBAB7C29DE98E700098DB4 /* EnvironmentKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42A67C2A29E65CA000CA87B9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		42CBAB6029DE8CA500098DB4 /* ExportErrorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExportErrorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42CBAB6329DE8CA500098DB4 /* ExportErrorDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportErrorDemoApp.swift; sourceTree = "<group>"; };
 		42CBAB6529DE8CA500098DB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		42CBAB6729DE8CA600098DB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42CBAB6A29DE8CA600098DB4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		42CBAB6C29DE8CA600098DB4 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		42CBAB6F29DE8CA600098DB4 /* ExportErrorDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExportErrorDemo.xcdatamodel; sourceTree = "<group>"; };
 		42CBAB7129DE8CA600098DB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42CBAB7729DE8D4F00098DB4 /* CoreDataSyncMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataSyncMonitor.swift; sourceTree = "<group>"; };
+		42CBAB7929DE8E8900098DB4 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		42CBAB7B29DE964B00098DB4 /* ExportErrorDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExportErrorDemo.entitlements; sourceTree = "<group>"; };
+		42CBAB7C29DE98E700098DB4 /* EnvironmentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +63,17 @@
 		42CBAB6229DE8CA500098DB4 /* ExportErrorDemo */ = {
 			isa = PBXGroup;
 			children = (
+				42CBAB7B29DE964B00098DB4 /* ExportErrorDemo.entitlements */,
 				42CBAB6329DE8CA500098DB4 /* ExportErrorDemoApp.swift */,
 				42CBAB6529DE8CA500098DB4 /* ContentView.swift */,
 				42CBAB6729DE8CA600098DB4 /* Assets.xcassets */,
-				42CBAB6C29DE8CA600098DB4 /* Persistence.swift */,
 				42CBAB7129DE8CA600098DB4 /* Info.plist */,
 				42CBAB6E29DE8CA600098DB4 /* ExportErrorDemo.xcdatamodeld */,
 				42CBAB6929DE8CA600098DB4 /* Preview Content */,
+				42CBAB7729DE8D4F00098DB4 /* CoreDataSyncMonitor.swift */,
+				42CBAB7929DE8E8900098DB4 /* CoreDataStack.swift */,
+				42CBAB7C29DE98E700098DB4 /* EnvironmentKey.swift */,
+				42A67C2A29E65CA000CA87B9 /* README.md */,
 			);
 			path = ExportErrorDemo;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A67C2B29E65CA000CA87B9 /* README.md in Resources */,
 				42CBAB6B29DE8CA600098DB4 /* Preview Assets.xcassets in Resources */,
 				42CBAB6829DE8CA600098DB4 /* Assets.xcassets in Resources */,
 			);
@@ -145,9 +157,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42CBAB6D29DE8CA600098DB4 /* Persistence.swift in Sources */,
 				42CBAB7029DE8CA600098DB4 /* ExportErrorDemo.xcdatamodeld in Sources */,
 				42CBAB6629DE8CA500098DB4 /* ContentView.swift in Sources */,
+				42CBAB7D29DE98E700098DB4 /* EnvironmentKey.swift in Sources */,
+				42CBAB7A29DE8E8900098DB4 /* CoreDataStack.swift in Sources */,
+				42CBAB7829DE8D4F00098DB4 /* CoreDataSyncMonitor.swift in Sources */,
 				42CBAB6429DE8CA500098DB4 /* ExportErrorDemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,17 +288,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExportErrorDemo/ExportErrorDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExportErrorDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = 7DWKKQ436T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExportErrorDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,17 +320,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ExportErrorDemo/ExportErrorDemo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ExportErrorDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = 7DWKKQ436T;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExportErrorDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

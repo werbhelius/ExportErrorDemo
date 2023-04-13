@@ -9,80 +9,130 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    
+    @Environment(\.managedObjectContext) var moc
+    @Environment(\.coreDataStackKey) private var coreDataStack
+    
+    @StateObject var coreDataSyncMonitor = CoreDataSyncMonitor.shared
+    
+    @FetchRequest<Item> var items: FetchedResults<Item>
+    
+    init(request: NSFetchRequest<Item>) {
+        self._items = FetchRequest(fetchRequest: request)
+    }
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+        ZStack(alignment: .bottom) {
+            NavigationView {
+                List {
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text("SycnEvent")
+                            
+                            Spacer()
+                            
+                            if let event = coreDataSyncMonitor.event {
+                                Text(event.type.desc + " " + (event.succeeded ? "succeeded" : "error"))
+                            }
+                            
+                        }
+                        
+                        if let event = coreDataSyncMonitor.event, event.error?.localizedDescription.isEmpty == false {
+                            Text(event.error?.localizedDescription ?? "")
+                                .font(.system(size: 14))
+                        }
                     }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    
+                    ForEach(items) { item in
+                        
+                        VStack(alignment: .leading) {
+                            Text("id:\(item.id?.uuidString ?? "")")
+                                .font(.system(size: 14))
+                            
+                            Text("money:\(item.money?.description ?? "")")
+                                .font(.system(size: 14))
+                            
+                            let relatedItems = (item.relatedItems?.allObjects as? [Item]) ?? []
+                            
+                            ForEach(relatedItems) { relatedItem in
+                                Text("relatedID:\(relatedItem.id?.uuidString ?? "")")
+                                    .font(.system(size: 12))
+                            }
+                            
+                        }
+                        .swipeActions {
+                            Button("edit") {
+                                editReleatedItems(item: item)
+                            }
+                            .tint(.green)
+                            
+                            Button("delete") {
+                                deleteItems(item: item)
+                            }
+                            .tint(.red)
+                        }
                     }
+                    
                 }
             }
-            Text("Select an item")
+            
+            Button(action: {
+                addRelatedItems()
+            }, label: {
+                Text("add")
+                    .foregroundColor(Color.white)
+                    .padding(20)
+                    .background(Color.black)
+                    .cornerRadius(16)
+            })
+            
         }
     }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    
+    private func addRelatedItems() {
+        coreDataStack.backgroundSave { bgContext in
+            let item1 = Item(context: bgContext)
+            let item2 = Item(context: bgContext)
+            
+            item1.id = UUID()
+            item1.money = 1
+            item1.timestamp = Date()
+            
+            item2.id = UUID()
+            item2.money = 1
+            item2.timestamp = Date()
+            
+            item1.relatedItems = NSSet(array: [item2])
+            item2.relatedItems = NSSet(array: [item1])
+            
+        }
+    }
+    
+    private func editReleatedItems(item: Item) {
+        let id = item.id
+        
+        coreDataStack.backgroundSave { bgContext in
+            if let object = try? bgContext.fetch(Item.fetchBy(id: id ?? UUID())).first {
+                
+                let money = Int.random(in: 0...10)
+                object.money = NSDecimalNumber(value: money)
+                (object.relatedItems?.allObjects as? [Item])?.forEach {
+                    $0.money = NSDecimalNumber(value: money)
+                }
+                
+            }
+        }
+    }
+    
+    private func deleteItems(item: Item) {
+        let id = item.id
+        
+        coreDataStack.backgroundSave { bgContext in
+            if let object = try? bgContext.fetch(Item.fetchBy(id: id ?? UUID())).first {
+                bgContext.delete(object)
             }
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-}
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-    }
 }
